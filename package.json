@@ -1,6 +1,6 @@
 {
   "name": "@donutteam/fritter-api-utilities",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of utilities for building APIs with the Fritter web framework.",
   "main": "./build/index.js",
   "scripts": {
