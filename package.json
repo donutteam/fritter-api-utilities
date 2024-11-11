@@ -1,0 +1,27 @@
+{
+  "name": "@donutteam/fritter-api-utilities",
+  "version": "1.0.0",
+  "description": "A collection of utilities for building APIs with the Fritter web framework.",
+  "main": "./build/index.js",
+  "scripts": {
+    "build": "npx rimraf lib && npx tsc",
+    "build:watch": "npx rimraf lib && npx tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "fritter",
+    "api",
+    "utilities"
+  ],
+  "author": "Donut Team",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.3"
+  },
+  "peerDependencies": {
+    "@donutteam/fritter": "^3.0.0",
+    "zod": "^3.23.8"
+  }
+}
