@@ -22,7 +22,7 @@
     "typescript": "^5.6.3"
   },
   "peerDependencies": {
-    "@donutteam/fritter": "^3.0.0",
+    "@donutteam/fritter": "^4.0.0",
     "zod": "^3.23.8"
   }
 }

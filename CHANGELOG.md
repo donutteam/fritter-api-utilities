@@ -1,3 +1,7 @@
+## 2.0.0
+
+* refactor: now requires @donutteam/fritter@4.0.0
+
 ## 1.0.2
 
 * refactor: extended @donutteam/typescript-config
