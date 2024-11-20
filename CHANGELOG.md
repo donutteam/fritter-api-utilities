@@ -1,3 +1,7 @@
+## 2.1.0
+
+* feat: added request function
+
 ## 2.0.0
 
 * refactor: now requires @donutteam/fritter@4.0.0
