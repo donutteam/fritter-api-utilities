@@ -20,16 +20,7 @@ export type CreateEndpointRouteOptions
 	ResponseBodySchema extends z.ZodSchema
 > =
 {
-	method: "GET",
-	path: Fritter.RouterMiddleware.Route<RouteFritterContext>["path"];
-	middlewares: Fritter.RouterMiddleware.Route<RouteFritterContext>["middlewares"];
-	requestBodySchema: RequestBodySchema;
-	responseBodySchema: ResponseBodySchema;
-	getRequestBody: (context: RouteFritterContext) => Promise<Record<keyof z.input<RequestBodySchema>, unknown>>;
-	handler: (requestBody: z.infer<RequestBodySchema>, context: RouteFritterContext) => Promise<z.infer<ResponseBodySchema>>;
-} |
-{
-	method: "POST",
+	method: "GET" | "POST",
 	path: Fritter.RouterMiddleware.Route<RouteFritterContext>["path"];
 	middlewares: Fritter.RouterMiddleware.Route<RouteFritterContext>["middlewares"];
 	requestBodySchema: RequestBodySchema;
@@ -57,9 +48,23 @@ export function createEndpointRoute
 
 			try
 			{
-				const rawRequestBody = "getRequestBody" in options
-					? await options.getRequestBody(context)
-					: await context.getRequestBody();
+				let rawRequestBody: Fritter.BodyParserMiddleware.RequestBody;
+
+				if (options.method == "GET")
+				{
+					try
+					{
+						rawRequestBody = JSON.parse(context.fritterRequest.getSearchParams().get("requestBody") ?? "{}");
+					}
+					catch (error)
+					{
+						rawRequestBody = {};
+					}
+				}
+				else
+				{
+					rawRequestBody = await context.getRequestBody();
+				}
 
 				const { requestBody, errorResponseBody } = parseRequestBody(options.requestBodySchema, rawRequestBody);
 

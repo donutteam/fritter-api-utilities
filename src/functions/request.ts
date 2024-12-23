@@ -71,14 +71,11 @@ export async function request
 
 	let response: Response;
 
-	if (method === "GET")
+	if (method == "GET")
 	{
 		const searchParameters = new URLSearchParams();
 
-		for (const [ key, value ] of Object.entries(requestBody))
-		{
-			searchParameters.append(key, (value as any).toString());
-		}
+		searchParameters.set("requestBody", JSON.stringify(requestBody));
 
 		response = await fetch(endpointUrl + "?" + searchParameters.toString(),
 			{

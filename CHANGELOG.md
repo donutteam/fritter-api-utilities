@@ -1,3 +1,7 @@
+## 3.0.0
+
+* refactor: changed how GET request bodies are sent and parsed
+
 ## 2.1.0
 
 * feat: added request function
